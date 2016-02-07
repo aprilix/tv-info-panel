@@ -35,8 +35,26 @@ class Storage {
   }
 
   sync() {
-    var data = JSON.stringify(this.data);
-    fs.writeSync(`${this.basePath}${sep}storage.json`, data);
-    return this;
+    const file = `${this.basePath}${sep}storage.json`;
+
+    function write(data) {
+      fs.writeSync(file, JSON.stringify(data));
+    }
+
+    function read() {
+      var data = fs.readSync(file);
+      this.data = JSON.parse(data);
+    }
+
+    var error = null;
+    try {
+      fs.accessSync(file)
+    } catch (error) {
+      write(this.data);
+      return self;
+    }
+
+    read();
+    return self;
   }
 }
