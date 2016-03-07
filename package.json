@@ -1,0 +1,11 @@
+{
+  "name": "tv-info-panel",
+  "description": "Informational TV board with various functionality built-in",
+  "version": "1.0.0",
+  "scripts": {
+    "pre-install": "node ./bin/pre-install.js"
+  },
+  "dependencies": {
+    "http2": "3.3.2"
+  }
+}
